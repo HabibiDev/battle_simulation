@@ -1,15 +1,41 @@
-import random
-from time import time
-
-class Unit:
-	def __init__(self, health = 100):
-		self.recharge = random.randint(100, 2000)
-		self.health = health
-		self.zero_time = 0
+from abc import abstractmethod, ABC
 
 
-	def recharger(self):
-		if (self.zero_time + self.recharge) <= time() * 1000:
-			return True
-		else:
-			return False
+class Unit(ABC):
+
+    UNIT = {}
+
+    @abstractmethod
+    def level_up(self):
+        pass
+
+    @abstractmethod
+    def is_attack(self):
+        pass
+
+    @abstractmethod
+    def demage(self):
+        pass
+
+    @abstractmethod
+    def demage_rank(self):
+        pass
+
+    @abstractmethod
+    def take_damage(self):
+        pass
+
+    @abstractmethod
+    def is_active(self):
+        pass
+
+    @classmethod
+    def register(cls, name):
+        def dec(unit_cls):
+            cls.UNIT[name] = unit_cls
+            return unit_cls
+        return dec
+
+    @classmethod
+    def new(cls, name, **kwargs):
+        return cls.UNIT[name](**kwargs)
