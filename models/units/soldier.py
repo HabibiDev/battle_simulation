@@ -1,5 +1,5 @@
 from random import randint
-from time import time
+from time import monotonic
 from .unit import Unit
 
 
@@ -13,7 +13,7 @@ class Soldier(Unit):
         self.exp = 0
 
     def recharger(self):
-        if (self.zero_time + self.recharge) <= time() * 1000:
+        if (self.zero_time + self.recharge) <= monotonic() * 1000:
             return True
         else:
             return False
@@ -33,7 +33,7 @@ class Soldier(Unit):
     def demage(self):
         if self.recharger() == True:
             calc_demage = 0.05 + self.exp / 100
-            self.zero_time = time() * 1000
+            self.zero_time = monotonic() * 1000
             self.level_up()
             return calc_demage
         else:
