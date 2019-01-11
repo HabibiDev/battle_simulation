@@ -9,8 +9,6 @@ class Squad:
         for unit in self.units:
             if unit.is_active() == True:
                 squad_active = True
-            else:
-                self.units.remove(unit)
         return squad_active
 
     def is_attack(self):
@@ -21,21 +19,23 @@ class Squad:
         calc_chance = 0.5 * (1 + unit.health / 100) * gavg
         return calc_chance
 
-    def demage(self):
-        calc_demage = 0
+    def damage(self):
+        calc_damage = 0
         for unit in self.units:
-            calc_demage += unit.demage()
-        return calc_demage
+            if unit.is_active() == True:
+                calc_damage += unit.damage()
+        return round(calc_damage, 2)
 
-    def take_damage(self, demag_squad):
+    def damage_rank(self):
+        calc_rank = 0
         for unit in self.units:
-            unit.take_damage(demag_squad / len(self.units))
+            if unit.is_active() == True:
+                calc_rank += unit.damage_rank()
+        return round(calc_rank, 2)
 
-    def squad_rank(self):
-        power_level = 0
+    def take_damage(self, damage_squad):
         for unit in self.units:
-            power_level += unit.demage_rank()
-        return power_level
+            unit.take_damage(damage_squad / len(self.units))
 
     def __str__(self):
         return 'Squad:\n Units:{0}\n'.format(self.units)

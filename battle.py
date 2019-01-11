@@ -16,7 +16,7 @@ class Battle:
                 )
                 target_army = army.choose_strategy()
                 if target_army.is_active() != False:
-                    target_army.attack_success(army, army.demage())
+                    target_army.attack_success(army, army.damage())
                 else:
                     print('{0}, out of game'.format(target_army))
                     self.armies_game_over.append(target_army)

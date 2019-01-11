@@ -14,11 +14,11 @@ class Unit(ABC):
         pass
 
     @abstractmethod
-    def demage(self):
+    def damage(self):
         pass
 
     @abstractmethod
-    def demage_rank(self):
+    def damage_rank(self):
         pass
 
     @abstractmethod

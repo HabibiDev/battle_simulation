@@ -1,6 +1,7 @@
 from random import randint
-from models.army import Army
 from battle import Battle
+from models.army import Army
+
 
 if __name__ == '__main__':
 
@@ -20,7 +21,7 @@ if __name__ == '__main__':
                 )
                 army = Army(randint(2, calc_squad), i)
                 army.create_army()
-                army.rank_army()
+                army.damage_rank()
                 armies.append(army)
 
             Game = Battle(armies)

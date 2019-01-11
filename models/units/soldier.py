@@ -28,24 +28,24 @@ class Soldier(Unit):
     def is_attack(self):
         calc_chance = 0.5 * (1 + self.health / 100) * \
             randint((50 + self.exp), 100) / 100
-        return calc_chance
+        return round(calc_chance, 2)
 
-    def demage(self):
+    def damage(self):
         if self.recharger() == True:
-            calc_demage = 0.05 + self.exp / 100
+            calc_damage = 0.05 + self.exp / 100
             self.zero_time = monotonic() * 1000
             self.level_up()
-            return calc_demage
+            return round(calc_damage, 2)
         else:
             return 0
 
-    def demage_rank(self):
-        demage_calc = 0.05 + self.exp / 100
-        return demage_calc
+    def damage_rank(self):
+        damage_calc = 0.05 + self.exp / 100
+        return round(damage_calc, 2)
 
-    def take_damage(self, demag_enemy):
+    def take_damage(self, damage_enemy):
         if self.is_active() == True:
-            self.health -= demag_enemy
+            self.health -= round(damage_enemy, 2)
         return self.health
 
     def is_active(self):
@@ -54,5 +54,11 @@ class Soldier(Unit):
         else:
             return True
 
+    def __call__(self):
+        return 'Soldier'
+
     def __str__(self):
-        return 'Soldier: recharge:{0} health:{1}'.format(self.recharge, self. health)
+        return 'Soldier'
+
+    def __repr__(self):
+        return 'Soldier'
