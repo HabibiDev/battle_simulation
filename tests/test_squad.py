@@ -23,7 +23,7 @@ class TestSquad(unittest.TestCase):
         else:
             self.assertFalse(unit.is_active())
 
-    def test_damage_and_take_damage(self):
+    def test_damage_and_damage_rank(self):
         units = [choice([Soldier(), Vehicle()]) for i in range(5, 11)]
         unit = Squad(units)
         self.assertEqual(unit.damage_rank(), round(0.05 * len(unit.units), 2))

@@ -40,7 +40,7 @@ class TestVehicle(unittest.TestCase):
         unit = Vehicle()
         self.assertEqual(unit.take_damage(100), 40)
         for oper in unit.operators:
-            self.assertNotEqual(oper.health, 100)
+            self.assertLess(oper.health, 100)
         unit.health = 0
         self.assertEqual(unit.take_damage(100), 0)
         unit.health = 1
